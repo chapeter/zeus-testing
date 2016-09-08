@@ -1,9 +1,13 @@
-FROM python:3.5
-EXPOSE 5000
-WORKDIR /app
+FROM python:2
+
 COPY . /app
 
-RUN chmod a+x .shipped/build .shipped/run .shipped/test
+WORKDIR /app
 
-RUN [".shipped/build"]
-CMD .shipped/run
+RUN pip install -r requirements.txt
+
+EXPOSE 5000
+
+ENTRYPOINT ["python"]
+
+CMD ["main.py"]
